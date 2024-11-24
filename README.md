@@ -25,15 +25,16 @@ const { publicKey, privateKey } = await jose.generateKeyPair("ES256", { extracta
 
 async function generateCSR() {
     try {
-        const commonName = 'example.com';
-        
+        const commonName = 'www.ssl.boats';
+        const dnsNames = ["www.ssl.boats", "ssl.boats"];
+
         const csr = await generateCSRWithExistingKeys(
-            commonName,
-            publicKey,
-            privateKey,
-            jose
-        );
-        
+            commonName, 
+            keyPair.publicKey,
+            keyPair.privateKey, 
+            dnsNames, 
+            jose);
+                
         console.log('Generated CSR:', csr);
     } catch (error) {
         console.error('Failed to generate CSR:', error);
