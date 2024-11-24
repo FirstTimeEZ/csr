@@ -17,6 +17,7 @@ Here's a basic example of generating a CSR:
 
 ```javascript
 import { generateCSRWithExistingKeys } from './csr.js';
+import * as jose from 'index.js'
 
 async function generateCSR() {
     try {
@@ -25,7 +26,8 @@ async function generateCSR() {
         const csr = await generateCSRWithExistingKeys(
             commonName,
             publicKeyObject,
-            privateKeyObject
+            privateKeyObject,
+            jose
         );
         
         console.log('Generated CSR:', csr);
