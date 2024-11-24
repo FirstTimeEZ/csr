@@ -6,9 +6,10 @@ This library follows the `PKCS#10` specification and implements CSR generation w
 
 ## Features
 
+- `PKCS#10` compliant implementation
+- `DNS` Subject Alternative Names (`SAN`)
 - Generate `CSRs` using existing `ECDSA` key pairs
 - DER encoding with `base64url` output format
-- `PKCS#10` compliant implementation
 - Secure cryptographic operations using native `Web Crypto API`
 
 ## Usage
