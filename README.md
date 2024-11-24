@@ -16,7 +16,7 @@ This library follows the `PKCS#10` specification and implements CSR generation w
 Here's a basic example of generating a CSR:
 
 ```javascript
-import { generateCSRWithExistingKeys } from '@yourusername/csr';
+import { generateCSRWithExistingKeys } from './csr.js';
 
 async function generateCSR() {
     try {
