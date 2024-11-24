@@ -53,9 +53,11 @@ Generates a Certificate Signing Request using existing public and private key pa
 
 #### Parameters
 
-- `commonName` (string): The common name (CN) for the CSR subject field
+- `commonName` (string): The common name (`CN`) for the `CSR` subject field
 - `publicKey` (CryptoKey): `ECDSA` public key as a CryptoKey object
 - `privateKey` (CryptoKey): `ECDSA` private key corresponding to the public key
+- `dnsNames` (array): Array of DNS names to use for Subject Alternative Names (`SAN`)
+- `jose` (import): Jose is required for key export operations
 
 #### Returns
 
