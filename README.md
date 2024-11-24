@@ -17,7 +17,7 @@ Here's a basic example of generating a CSR:
 
 ```javascript
 import { generateCSRWithExistingKeys } from './csr.js';
-import * as jose from 'index.js'
+import * as jose from 'index.js';
 
 async function generateCSR() {
     try {
