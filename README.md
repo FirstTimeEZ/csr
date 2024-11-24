@@ -47,9 +47,9 @@ async function generateCSR() {
 
 ## API Reference
 
-### generateCSRWithExistingKeys(commonName, publicKey, privateKey)
+### generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames, jose)
 
-Generates a Certificate Signing Request using existing public and private key pairs.
+Generates a `Certificate Signing Request` using existing public and private key pairs.
 
 #### Parameters
 
@@ -61,11 +61,11 @@ Generates a Certificate Signing Request using existing public and private key pa
 
 #### Returns
 
-- `Promise<string>`: Base64URL-encoded DER format CSR
+- `Promise<string>`: Base64URL-encoded `DER` format `CSR`
 
 #### Throws
 
-- `Error`: If CSR generation fails, with detailed error message
+- `Error`: If `CSR` generation fails, with detailed error message
 
 -----------------------
 
