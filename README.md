@@ -2,7 +2,7 @@
 
 A robust and secure JavaScript library for generating Certificate Signing Requests (CSRs) using existing key pairs. 
 
-This library follows the ` specification and implements CSR generation with `ECDSA` keys and SHA-256 signing.
+This library follows the `PKCS#10` specification and implements CSR generation with `ECDSA` keys and SHA-256 signing.
 
 ## Features
 
