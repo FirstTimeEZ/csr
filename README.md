@@ -19,7 +19,7 @@ Here's a basic example of generating a `CSR` that is compatible with `FlattenedS
 [`Jose`](https://github.com/panva/jose) is required for `ES256` and to keep the same flow.
 
 ```javascript
-import { generateCSRWithExistingKeys } from './csr.js';
+import { generateCSRWithExistingKeys } from 'simple-csr-generator';
 import * as jose from 'jose';
 
 const { publicKey, privateKey } = await jose.generateKeyPair("ES256", { extractable: true });
