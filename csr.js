@@ -17,34 +17,28 @@
 
 import * as asn from './asn1.js';
 import { createPrivateKey, createPublicKey, sign, KeyObject } from 'crypto';
-import { isCryptoKey } from 'util/types';
 import { extractECPoint } from './pki.js';
 import { TAGS } from './asn1.js';
 
 /**
- * Generates a Certificate Signing Request (CSR) using existing public and private key pairs.
- * The function creates a CSR in DER format, encoded as base64url string, following the PKCS#10 specification.
+ * Generates a SHA-256 Certificate Signing Request (CSR) in DER format, encoded as base64url string, following the PKCS#10 specification.
  * 
- * @param {string} commonName - The common name (CN) to be included in the CSR subject field.
- *                             This typically represents the domain name or entity the certificate is for.
- * @param {CryptoKey} publicKey - The public key to be included in the CSR. Must be an ECDSA public key
+ * @param {string} commonName - The common name (CN) to be included in the CSR subject field. This typically represents the domain name or entity the certificate is for.
  * 
- * @param {CryptoKey} privateKey - The private key used to sign the CSR. Must be an ECDSA private key
- *                                 corresponding to the provided public key.
+ * @param {KeyObject} publicKey - KeyObject of the public key to be included in the CSR.
+ * 
+ * @param {KeyObject} privateKey - KeyObject of the private key used to sign the CSR. Must correspond to the provided public key.
+ * 
  * @param {string[]} dnsNames - Array of DNS names to use for Subject Alternative Names and Common Name                             
  * 
  * @returns {Promise<string>} A Promise that resolves to the base64url-encoded DER format CSR.
  * 
  * @throws {Error} If CSR generation fails, with the specific error message included.
- * 
- * @description 
- * The CSR is generated using ECDSA with SHA-256 as the signature algorithm.
- * The resulting CSR follows the PKCS#10 specification (RFC 2986).
  */
 export async function generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames) {
     try {
-        const publicKeySpki = (isCryptoKey(publicKey) ? KeyObject.from(publicKey) : publicKey).export({ format: 'pem', type: 'spki' });
-        const privateKeyPkcs8 = (isCryptoKey(privateKey) ? KeyObject.from(privateKey) : privateKey).export({ format: 'pem', type: 'pkcs8' });
+        const publicKeySpki = publicKey.export({ format: 'pem', type: 'spki' });
+        const privateKeyPkcs8 = privateKey.export({ format: 'pem', type: 'pkcs8' });
 
         const privKeyObj = createPrivateKey(privateKeyPkcs8);
 

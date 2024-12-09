@@ -1,16 +1,14 @@
-# CSR (Certificate Signing Request) Generator
+# Simple Certificate Signing Request Generator (CSR)
 
-A robust and secure JavaScript library for generating Certificate Signing Requests (CSRs) using existing key pairs. 
+A robust and secure JavaScript library for generating Certificate Signing Requests (CSRs)
 
-This library follows the `PKCS#10` specification and implements CSR generation with `ECDSA` keys and SHA-256 signing.
+This library follows the `PKCS#10` specification and implements CSR generation with `SHA-256` signing.
 
 ## Features
 
 - `PKCS#10` compliant implementation
 - `DNS` Subject Alternative Names (`SAN`)
-- Generate `CSRs` using existing `ECDSA` key pairs
-- DER encoding with `base64url` output format
-- Secure cryptographic operations using native `Web Crypto API`
+- `DER` encoding with `base64url` output format
 
 ## Usage
 
@@ -37,35 +35,30 @@ async function generateCSR(publicKeyES256, privateKeyES256) {
 
 ### generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames)
 
-Generates a `Certificate Signing Request` using existing public and private key pairs.
+Generates a `SHA-256` Certificate Signing Request (CSR) in `DER` format, encoded as `base64url` string, following the `PKCS#10` specification.
 
 #### Parameters
 
-- `commonName` (string): The common name (`CN`) for the `CSR` subject field
-- `publicKey` (CryptoKey): `ECDSA` public key as a CryptoKey object
-- `privateKey` (CryptoKey): `ECDSA` private key corresponding to the public key
+- `commonName` (string): The common name (`CN`) to be included in the `CSR` subject field.
+- `publicKey` (KeyObject): The public key to be included in the `CSR`.
+- `privateKey` (KeyObject): The private key that corresponds to the provided public key.
 - `dnsNames` (array): Array of DNS names to use for Subject Alternative Names (`SAN`)
 
 #### Returns
 
 - `Promise<string>`: Base64URL-encoded `DER` format `CSR`
 
-#### Throws
-
-- `Error`: If `CSR` generation fails, with detailed error message
-
 -----------------------
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. 
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 For major changes, please open an issue first to discuss what you would like to change.
 
 ## Acknowledgments
 
 - [`RFC 2986`](https://tools.ietf.org/html/rfc2986) - `PKCS #10`: Certification Request Syntax Specification
-- [`Web Crypto API`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
 
 ---
 
