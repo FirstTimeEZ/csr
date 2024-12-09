@@ -20,7 +20,7 @@ Here's a basic example of generating a `CSR` that is compatible with `FlattenedS
 
 ```javascript
 import { generateCSRWithExistingKeys } from './csr.js';
-import * as jose from 'index.js';
+import * as jose from 'jose';
 
 const { publicKey, privateKey } = await jose.generateKeyPair("ES256", { extractable: true });
 
@@ -33,8 +33,7 @@ async function generateCSR() {
             commonName, 
             keyPair.publicKey,
             keyPair.privateKey, 
-            dnsNames, 
-            jose);
+            dnsNames);
                 
         console.log('Generated CSR:', csr);
     } catch (error) {
@@ -47,7 +46,7 @@ async function generateCSR() {
 
 ## API Reference
 
-### generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames, jose)
+### generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames)
 
 Generates a `Certificate Signing Request` using existing public and private key pairs.
 
@@ -57,7 +56,6 @@ Generates a `Certificate Signing Request` using existing public and private key 
 - `publicKey` (CryptoKey): `ECDSA` public key as a CryptoKey object
 - `privateKey` (CryptoKey): `ECDSA` private key corresponding to the public key
 - `dnsNames` (array): Array of DNS names to use for Subject Alternative Names (`SAN`)
-- `jose` (import): Jose is required for key export operations
 
 #### Returns
 
