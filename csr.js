@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
+import * as jose from 'jose';
+import * as asn from './asn1.js';
 import { createPrivateKey, createPublicKey, sign } from 'crypto';
 import { extractECPoint } from './pki.js';
 import { TAGS } from './asn1.js';
-import * as asn from './asn1.js';
 
 /**
  * Generates a Certificate Signing Request (CSR) using existing public and private key pairs.
@@ -35,11 +36,8 @@ import * as asn from './asn1.js';
  *                                 corresponding to the provided public key. * 
  * @param {string[]} dnsNames - Array of DNS names to use for Subject Alternative Names and Common Name
  * 
- * @param {CryptoKey} joseImport - Your Jose Import, which should be `import * as jose from "index.js"`
- * 
  * @example 
- * import * as jose from './index.js';
- * generateCSRWithExistingKeys(commonName, publicKey, privateKey, jose)                               
+ * generateCSRWithExistingKeys(commonName, publicKey, privateKey)                               
  * 
  * @returns {Promise<string>} A Promise that resolves to the base64url-encoded DER format CSR.
  * 
@@ -53,10 +51,10 @@ import * as asn from './asn1.js';
  *       required helper functions (encodeDERSequence, encodeDERSet, etc.) are available
  *       in the scope.
  */
-export async function generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames, joseImport) {
+export async function generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames) {
     try {
-        const publicKeySpki = await joseImport.exportSPKI(publicKey);
-        const privateKeyPkcs8 = await joseImport.exportPKCS8(privateKey);
+        const publicKeySpki = await jose.exportSPKI(publicKey);
+        const privateKeyPkcs8 = await jose.exportPKCS8(privateKey);
 
         const privKeyObj = createPrivateKey(privateKeyPkcs8);
 
