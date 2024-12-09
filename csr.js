@@ -15,18 +15,15 @@
  * limitations under the License.
  */
 
-import * as jose from 'jose';
 import * as asn from './asn1.js';
-import { createPrivateKey, createPublicKey, sign } from 'crypto';
+import { createPrivateKey, createPublicKey, sign, KeyObject } from 'crypto';
+import { isCryptoKey } from 'util/types';
 import { extractECPoint } from './pki.js';
 import { TAGS } from './asn1.js';
 
 /**
  * Generates a Certificate Signing Request (CSR) using existing public and private key pairs.
  * The function creates a CSR in DER format, encoded as base64url string, following the PKCS#10 specification.
- * 
- * @async
- * @requires jose - For key export operations
  * 
  * @param {string} commonName - The common name (CN) to be included in the CSR subject field.
  *                             This typically represents the domain name or entity the certificate is for.
@@ -53,8 +50,8 @@ import { TAGS } from './asn1.js';
  */
 export async function generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames) {
     try {
-        const publicKeySpki = await jose.exportSPKI(publicKey);
-        const privateKeyPkcs8 = await jose.exportPKCS8(privateKey);
+        const publicKeySpki = (isCryptoKey(publicKey) ? KeyObject.from(publicKey) : publicKey).export({ format: 'pem', type: 'spki' });
+        const privateKeyPkcs8 = (isCryptoKey(privateKey) ? KeyObject.from(privateKey) : privateKey).export({ format: 'pem', type: 'pkcs8' });
 
         const privKeyObj = createPrivateKey(privateKeyPkcs8);
 
