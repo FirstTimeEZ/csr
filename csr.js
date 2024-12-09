@@ -28,13 +28,10 @@ import { TAGS } from './asn1.js';
  * @param {string} commonName - The common name (CN) to be included in the CSR subject field.
  *                             This typically represents the domain name or entity the certificate is for.
  * @param {CryptoKey} publicKey - The public key to be included in the CSR. Must be an ECDSA public key
- *                                in the form of a CryptoKey object.
- * @param {CryptoKey} privateKey - The private key used to sign the CSR. Must be an ECDSA private key
- *                                 corresponding to the provided public key. * 
- * @param {string[]} dnsNames - Array of DNS names to use for Subject Alternative Names and Common Name
  * 
- * @example 
- * generateCSRWithExistingKeys(commonName, publicKey, privateKey)                               
+ * @param {CryptoKey} privateKey - The private key used to sign the CSR. Must be an ECDSA private key
+ *                                 corresponding to the provided public key.
+ * @param {string[]} dnsNames - Array of DNS names to use for Subject Alternative Names and Common Name                             
  * 
  * @returns {Promise<string>} A Promise that resolves to the base64url-encoded DER format CSR.
  * 
@@ -43,10 +40,6 @@ import { TAGS } from './asn1.js';
  * @description 
  * The CSR is generated using ECDSA with SHA-256 as the signature algorithm.
  * The resulting CSR follows the PKCS#10 specification (RFC 2986).
- * 
- * @note The function assumes the provided keys are valid ECDSA keys and the
- *       required helper functions (encodeDERSequence, encodeDERSet, etc.) are available
- *       in the scope.
  */
 export async function generateCSRWithExistingKeys(commonName, publicKey, privateKey, dnsNames) {
     try {
