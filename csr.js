@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import * as asn from './asn1.js';
-import { createPrivateKey, createPublicKey, sign, KeyObject } from 'crypto';
+import * as asn from 'simple-asn1';
+import { TAGS } from 'simple-asn1';
 import { extractECPoint } from './pki.js';
-import { TAGS } from './asn1.js';
+import { createPrivateKey, createPublicKey, sign, KeyObject } from 'crypto';
 
 /**
  * Generates a SHA-256 Certificate Signing Request (CSR) in DER format, encoded as base64url string, following the PKCS#10 specification.

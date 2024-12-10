@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import { TAGS } from './asn1.js';
-import * as asn from './asn1.js';
+import { TAGS } from 'simple-asn1';
+import * as asn from 'simple-asn1';
 
 export function extractECPoint(derKey) {
     let offset = 0;

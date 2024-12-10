@@ -1,7 +1,7 @@
 {
   "name": "simple-csr-generator",
   "author": "FirstTimeEZ",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Generates a Simple Certificate Signing Request (CSR) using existing public and private key pairs.",
   "main": "csr.js",
   "type": "module",
@@ -23,5 +23,8 @@
     "type": "git",
     "url": "git+https://github.com/FirstTimeEZ/csr.git"
   },
-  "homepage": "https://github.com/FirstTimeEZ/server-ssl"
+  "homepage": "https://github.com/FirstTimeEZ/server-ssl",
+  "dependencies": {
+    "simple-asn1": "^1.0.2"
+  }
 }
