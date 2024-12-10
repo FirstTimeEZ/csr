@@ -1,7 +1,7 @@
 {
   "name": "simple-csr-generator",
   "author": "FirstTimeEZ",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generates a Simple Certificate Signing Request (CSR) using existing public and private key pairs.",
   "main": "csr.js",
   "type": "module",
