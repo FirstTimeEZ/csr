@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/FirstTimeEZ/server-ssl",
   "dependencies": {
-    "simple-asn1": "^1.0.3"
+    "simple-asn1": "^1.0.4"
   }
 }
